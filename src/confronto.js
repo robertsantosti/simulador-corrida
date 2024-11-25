@@ -14,7 +14,8 @@ export class Confronto {
         ? this._jogador2
         : this._jogador1;
 
-    await this._selecionarConfronto();
+    this._jogador1.pontuacaoRodada !== this._jogador2.pontuacaoRodada &&
+      (await this._selecionarConfronto());
   };
 
   _confrontarComBomba = async () => {
