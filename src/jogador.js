@@ -26,7 +26,7 @@ class Jogador {
   }
 
   async limparPontuacao() {
-    this.pontuacao = 0;
+    this.pontuacaoTotal = 0;
   }
 
   async limparPontuacaoRodada() {

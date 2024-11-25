@@ -6,14 +6,16 @@ const QUANTIDADE_RODADAS = 5;
 
 const jogadores = [Mario, Luigi, Yoshi, Bowser, DonkeyKong, Peach];
 
-const valorDadoJogadorSelecionado = Dado.rolar() - 1;
+const JOGADOR_1 = jogadores[Math.floor(Math.random() * jogadores.length)];
+const jogadoresRestantes = jogadores.filter((jogador) => jogador !== JOGADOR_1);
 
-const JOGADOR_1 = jogadores[valorDadoJogadorSelecionado];
-let JOGADOR_2 = jogadores[Dado.rolar() - 1];
+console.log({
+  jogadorSelecionado: JOGADOR_1.nome,
+  jogadoresRestantes: jogadoresRestantes.map((jogador) => jogador.nome),
+});
 
-do {
-  JOGADOR_2 = jogadores[Dado.rolar() - 1];
-} while (JOGADOR_1 === JOGADOR_2);
+const JOGADOR_2 =
+  jogadoresRestantes[Math.floor(Math.random() * jogadoresRestantes.length)];
 
 const main = async () => {
   const jogarCorrida = new Jogar(JOGADOR_1, JOGADOR_2);

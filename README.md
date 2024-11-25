@@ -24,6 +24,7 @@
 <h2>Regras de negócio</h2>
 
 1. O computador selecionara automaticamente 2 (dois) pesonagens para disputar a corrida
+   - O computador não pode selecionar os 2 jogadores sendo o mesmo personagem
 2. Quando a corrida iniciar os jogadores devem correr em pistas aleatorias em 5 rodadas
    - O jogador deve jogar um dado de 6 lados
    - Caso a pista seja do tipo `RETA` somar o valor retirado no dado com o atributo `velocidade` do personagem.
