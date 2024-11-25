@@ -64,17 +64,17 @@ export class Jogar {
   }
 
   async finalizar() {
+    if (this.jogador1.pontuacaoTotal < 0) {
+      this.jogador1.limparPontuacao();
+    }
+
+    if (this.jogador2.pontuacaoTotal < 0) {
+      this.jogador2.limparPontuacao();
+    }
+
     console.log(`Resultado final:\n`);
-    console.log(
-      `${this.jogador1.nome}: ${
-        this.jogador1.pontuacaoTotal <= 0 ? 0 : this.jogador1.pontuacaoTotal
-      }`
-    );
-    console.log(
-      `${this.jogador2.nome}: ${
-        this.jogador2.pontuacaoTotal <= 0 ? 0 : this.jogador2.pontuacaoTotal
-      }`
-    );
+    console.log(`${this.jogador1.nome}: ${this.jogador1.pontuacaoTotal}`);
+    console.log(`${this.jogador2.nome}: ${this.jogador2.pontuacaoTotal}`);
 
     if (this.jogador1.pontuacaoTotal === this.jogador2.pontuacaoTotal) {
       console.log(`\nA corrida terminou em empate`);
