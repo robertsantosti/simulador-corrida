@@ -1,3 +1,4 @@
+import { Confronto } from "./confronto.js";
 import { Dado } from "./dado.js";
 import { Pista } from "./pista.js";
 
@@ -55,7 +56,8 @@ export class Jogar {
     await this._logRodada(this.jogador2, PISTA, resultadoDadoPlayer2);
 
     if (PISTA === "CONFRONTO") {
-      await this._confrontar();
+      const confronto = new Confronto(this.jogador1, this.jogador2);
+      await confronto.confrontar();
     }
 
     await this._pontuarJogador();
@@ -63,8 +65,16 @@ export class Jogar {
 
   async finalizar() {
     console.log(`Resultado final:\n`);
-    console.log(`${this.jogador1.nome}: ${this.jogador1.pontuacaoTotal}`);
-    console.log(`${this.jogador2.nome}: ${this.jogador2.pontuacaoTotal}`);
+    console.log(
+      `${this.jogador1.nome}: ${
+        this.jogador1.pontuacaoTotal <= 0 ? 0 : this.jogador1.pontuacaoTotal
+      }`
+    );
+    console.log(
+      `${this.jogador2.nome}: ${
+        this.jogador2.pontuacaoTotal <= 0 ? 0 : this.jogador2.pontuacaoTotal
+      }`
+    );
 
     if (this.jogador1.pontuacaoTotal === this.jogador2.pontuacaoTotal) {
       console.log(`\nA corrida terminou em empate`);
@@ -96,18 +106,6 @@ export class Jogar {
         jogador.pontuacaoRodada
       } (${jogador[propriedade[pista]]} + ${pontuacaoDado}) pontos.`
     );
-  }
-
-  async _confrontar() {
-    if (this.jogador1.pontuacaoRodada > this.jogador2.pontuacaoRodada) {
-      this.jogador2.perderPontos();
-      console.log(`${this.jogador2.nome} perdeu 1 ponto 🐢`);
-    }
-
-    if (this.jogador1.pontuacaoRodada < this.jogador2.pontuacaoRodada) {
-      this.jogador1.perderPontos();
-      console.log(`${this.jogador1.nome} perdeu 1 ponto 🐢`);
-    }
   }
 
   async _pontuarJogador() {
